@@ -1,0 +1,130 @@
+/* ==========================================================================
+   KUIS CINTA & SOFT PDKT STYLESHEET
+   Romantic Neo-Brutalist Pop-Art Comic Aesthetic
+   ========================================================================== */
+
+:root {
+  --love-pink: #FF2A85;
+  --love-pink-dark: #D6005E;
+  --love-rose: #FF6B9D;
+  --love-light: #FFF0F5;
+  --love-yellow: #FFD166;
+  --love-purple: #8338EC;
+  --love-dark: #1E1022;
+  --love-cyan: #06D6A0;
+}
+
+/* Base resets & smooth rendering */
+html, body {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior-y: none;
+}
+
+.border-3 {
+  border-width: 3px;
+}
+
+.pb-safe {
+  padding-bottom: max(0.75rem, env(safe-area-inset-bottom, 0.75rem));
+}
+
+/* Romantic Radial Polka Dot Pattern */
+.romantic-bg-pattern {
+  background-color: #2b0938;
+  background-image: 
+    radial-gradient(#FF2A85 1.5px, transparent 1.5px),
+    radial-gradient(#FFD166 1.5px, #2b0938 1.5px);
+  background-size: 32px 32px;
+  background-position: 0 0, 16px 16px;
+}
+
+/* Option Buttons */
+.option-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  min-height: 54px;
+  padding: 0.75rem 0.85rem;
+  background-color: #ffffff;
+  color: var(--love-dark);
+  border: 3px solid var(--love-dark);
+  border-radius: 1.25rem;
+  box-shadow: 4px 4px 0px var(--love-dark);
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.15s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.option-btn:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 5px 5px 0px var(--love-dark);
+  background-color: #fff9fb;
+}
+
+.option-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px var(--love-dark);
+}
+
+.option-btn.selected {
+  background: linear-gradient(135deg, #FF2A85 0%, #FF6B9D 100%) !important;
+  color: #ffffff !important;
+  border-color: var(--love-dark) !important;
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px var(--love-dark) !important;
+}
+
+.option-btn.selected .opt-badge {
+  background-color: #FFD166 !important;
+  color: var(--love-dark) !important;
+  border-color: var(--love-dark) !important;
+}
+
+.opt-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  flex-shrink: 0;
+  background-color: var(--loveLight);
+  color: var(--lovePurple);
+  border: 2px solid var(--love-dark);
+  border-radius: 0.65rem;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  box-shadow: 2px 2px 0px var(--love-dark);
+}
+
+.opt-text {
+  flex: 1;
+  line-height: 1.35;
+}
+
+/* Custom Slim Scrollbars */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 5px;
+}
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: rgba(255, 42, 133, 0.4);
+  border-radius: 10px;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 42, 133, 0.8);
+}
+
+/* Certificate specific print optimization for html2pdf */
+#certificate-card {
+  page-break-inside: avoid;
+  break-inside: avoid;
+  box-sizing: border-box;
+}

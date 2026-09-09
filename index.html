@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="id" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Kuis Cinta & Soft PDKT 💘 | Audit Hati & Rasa</title>
+  <meta name="description" content="Kuis cinta & soft PDKT lucu, jujur, dan bikin baper! 5 pertanyaan santai tanpa interogasi. Cek skor kecocokan hatimu sekarang!">
+
+  <!-- Google Fonts: Fredoka & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            lovePink: '#FF2A85',
+            lovePinkDark: '#D6005E',
+            loveRose: '#FF6B9D',
+            loveLight: '#FFF0F5',
+            loveYellow: '#FFD166',
+            lovePurple: '#8338EC',
+            loveDark: '#1E1022',
+            loveCyan: '#06D6A0'
+          },
+          fontFamily: {
+            comic: ['Fredoka', 'sans-serif'],
+            sans: ['Outfit', 'sans-serif']
+          },
+          boxShadow: {
+            'comic': '4px 4px 0px #1E1022',
+            'comic-lg': '6px 6px 0px #1E1022',
+            'comic-sm': '2px 2px 0px #1E1022',
+            'comic-pressed': '1px 1px 0px #1E1022'
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- External Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="h-full bg-loveDark text-loveDark font-sans antialiased select-none flex flex-col justify-between overflow-x-hidden">
+
+  <!-- BACKGROUND PATTERN OVERLAY -->
+  <div class="fixed inset-0 pointer-events-none z-0 romantic-bg-pattern opacity-90"></div>
+
+  <!-- MAIN WRAPPER (MOBILE CONSTRAINED) -->
+  <main class="relative z-10 w-full max-w-[430px] mx-auto min-h-[100dvh] flex flex-col justify-between px-3.5 py-2.5 pb-safe">
+
+    <!-- TOP NAV / HEADER BAR -->
+    <header class="w-full bg-white/95 backdrop-blur-md rounded-2xl border-3 border-loveDark shadow-comic p-2.5 flex items-center justify-between gap-2 shrink-0">
+      <!-- Secret Trigger Logo -->
+      <div id="header-secret-trigger" class="flex items-center gap-2 cursor-pointer active:scale-95 transition-transform" title="Klik 3x untuk buka Kotak Rahasia">
+        <div class="w-9 h-9 rounded-xl bg-lovePink border-2 border-loveDark shadow-comic-sm flex items-center justify-center text-lg transform -rotate-3 hover:rotate-6 transition-all">
+          💘
+        </div>
+        <div>
+          <h1 class="font-comic text-base font-bold text-lovePink leading-none tracking-wide flex items-center gap-1">
+            KUIS CINTA <span class="text-xs bg-loveYellow text-loveDark px-1 py-0.5 rounded border border-loveDark shadow-comic-sm">PDKT</span>
+          </h1>
+          <p class="text-[10px] text-lovePurple font-bold tracking-tight">Audit Rasa & Baterai Hati</p>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex items-center gap-1.5">
+        <button id="sound-toggle-btn" class="w-8 h-8 rounded-xl bg-loveLight border-2 border-loveDark shadow-comic-sm flex items-center justify-center text-sm active:translate-y-0.5 active:shadow-comic-pressed transition-all" aria-label="Toggle Sound">
+          <span id="sound-icon">🔊</span>
+        </button>
+        <button id="reset-quiz-btn" class="w-8 h-8 rounded-xl bg-loveYellow border-2 border-loveDark shadow-comic-sm flex items-center justify-center text-xs font-bold active:translate-y-0.5 active:shadow-comic-pressed transition-all" aria-label="Reset Quiz" title="Mulai Ulang">
+          🔄
+        </button>
+      </div>
+    </header>
+
+    <!-- STEP & PROGRESS INDICATOR (Hidden on Welcome) -->
+    <div id="step-tracker" class="w-full mt-2 hidden shrink-0">
+      <div class="flex justify-between items-center text-[11px] font-bold text-white mb-1 drop-shadow">
+        <span id="step-number-text" class="bg-lovePurple px-2.5 py-0.5 rounded-full border border-loveDark shadow-comic-sm">SOAL 1 DARI 5</span>
+        <span id="vibe-tag" class="bg-loveYellow text-loveDark px-2 py-0.5 rounded-full border border-loveDark shadow-comic-sm uppercase">PEMANASAN ⚡</span>
+      </div>
+      <div class="w-full h-3.5 bg-white/90 rounded-full border-2 border-loveDark shadow-comic-sm p-0.5 overflow-hidden">
+        <div id="progress-bar" class="h-full bg-gradient-to-r from-lovePink to-loveYellow rounded-full transition-all duration-300 w-0"></div>
+      </div>
+    </div>
+
+    <!-- QUIZ CONTAINER -->
+    <div id="quiz-flow-container" class="flex-1 my-2.5 flex flex-col justify-center overflow-y-auto pr-0.5 scrollbar-thin">
+
+      <!-- ==================== SCREEN 0: WELCOME & SUMPAH ==================== -->
+      <section id="screen-welcome" class="quiz-screen flex flex-col gap-3">
+        <!-- Main Card -->
+        <div class="bg-white rounded-3xl border-3 border-loveDark shadow-comic-lg p-4 text-center relative overflow-hidden">
+          <!-- Decorative Stamp -->
+          <div class="inline-block bg-loveYellow text-loveDark font-comic text-xs font-bold px-3 py-1 rounded-full border-2 border-loveDark shadow-comic-sm mb-2 transform -rotate-2">
+            ✨ SPECIAL LOVE & SOFT PDKT EDITION ✨
+          </div>
+
+          <div class="text-4xl my-1 animate-bounce">💌</div>
+          <h2 class="font-comic text-2xl font-bold text-lovePink leading-tight mb-1">
+            Seberapa Nyambung Hati Kita?
+          </h2>
+          <p class="text-xs text-gray-700 leading-relaxed font-medium mb-3">
+            Kuis 5 pertanyaan santai tanpa interogasi. Cukup klik opsi yang paling mewakili hatimu, gak perlu mikir tegang!
+          </p>
+
+          <!-- Input Nama -->
+          <div class="bg-loveLight rounded-2xl border-2 border-loveDark p-3 mb-3 text-left">
+            <label for="input-sender-name" class="block font-comic text-xs font-bold text-lovePurple mb-1">
+              👤 Nama Panggilan Manismu:
+            </label>
+            <input 
+              type="text" 
+              id="input-sender-name" 
+              maxlength="20"
+              placeholder="Contoh: Dinda / Sayang / Si Gemes..." 
+              class="w-full px-3 py-2 text-sm bg-white rounded-xl border-2 border-loveDark shadow-comic-sm focus:outline-none focus:ring-2 focus:ring-lovePink font-bold text-loveDark placeholder-gray-400"
+            />
+          </div>
+
+          <!-- Sumpah Anti Bohong -->
+          <div class="bg-amber-50 rounded-2xl border-2 border-loveDark p-3 text-left">
+            <div class="flex items-start gap-2.5">
+              <input 
+                type="checkbox" 
+                id="vow-checkbox" 
+                class="w-5 h-5 mt-0.5 rounded border-2 border-loveDark text-lovePink focus:ring-lovePink shrink-0 cursor-pointer accent-lovePink"
+              />
+              <label for="vow-checkbox" class="text-[11px] leading-tight text-gray-800 font-semibold cursor-pointer select-none">
+                <span class="text-lovePink font-bold">IKRAR ANTI-BOHONG ✋:</span><br>
+                "Aku berjanji menjawab jujur dari lubuk hati. Kalo bohong, upilku segede bakso urat & kupingku dijewer malaikat cinta!" 👼💘
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Start Button -->
+        <button 
+          id="start-quiz-btn" 
+          disabled
+          class="w-full py-3.5 px-5 bg-gradient-to-r from-lovePink to-loveRose disabled:opacity-50 disabled:cursor-not-allowed text-white font-comic text-lg font-bold rounded-2xl border-3 border-loveDark shadow-comic active:translate-y-1 active:shadow-comic-pressed transition-all flex items-center justify-center gap-2"
+        >
+          <span>Mulai Kuis Cinta! 💘</span>
+        </button>
+      </section>
+
+
+      <!-- ==================== SCREEN 1: Q1 (FUN) ==================== -->
+      <section id="screen-q1" class="quiz-screen hidden flex flex-col gap-3">
+        <div class="bg-white rounded-3xl border-3 border-loveDark shadow-comic p-4">
+          <div class="inline-block bg-lovePink text-white font-comic text-[11px] font-bold px-2.5 py-0.5 rounded-md border border-loveDark shadow-comic-sm mb-1.5">
+            PERTANYAAN 1 • MODE BATERAI
+          </div>
+          <h3 class="font-comic text-lg font-bold text-loveDark leading-snug">
+            Pas ketemu atau lagi bareng kamu, kondisi baterai hatiku biasanya... 🔋✨
+          </h3>
+        </div>
+
+        <div class="options-container flex flex-col gap-2.5" data-q="q1">
+          <button class="option-btn" data-val="A" data-sound="cieee">
+            <span class="opt-badge">A</span>
+            <span class="opt-text">Langsung 100% fast charging tanpa kabel ⚡🔋</span>
+          </button>
+          <button class="option-btn" data-val="B" data-sound="boing">
+            <span class="opt-badge">B</span>
+            <span class="opt-text">Sok cool di luar, padahal di dalam meledak 😎💥</span>
+          </button>
+          <button class="option-btn" data-val="C" data-sound="meow">
+            <span class="opt-badge">C</span>
+            <span class="opt-text">Salting brutal sampe lupa cara nafas wajar 🙈💨</span>
+          </button>
+          <button class="option-btn" data-val="D" data-sound="cieee">
+            <span class="opt-badge">D</span>
+            <span class="opt-text">Pengen deket terus gak mau pulang 🥺🪐</span>
+          </button>
+        </div>
+      </section>
+
+
+      <!-- ==================== SCREEN 2: Q2 (SERIUS / SOFT PDKT) ==================== -->
+      <section id="screen-q2" class="quiz-screen hidden flex flex-col gap-3">
+        <div class="bg-white rounded-3xl border-3 border-loveDark shadow-comic p-4">
+          <div class="inline-block bg-lovePurple text-white font-comic text-[11px] font-bold px-2.5 py-0.5 rounded-md border border-loveDark shadow-comic-sm mb-1.5">
+            PERTANYAAN 2 • [SERIUS] KENYAMANAN 💖
+          </div>
+          <h3 class="font-comic text-lg font-bold text-loveDark leading-snug">
+            Hal dari kamu yang paling bikin nyaman pas kita ngobrol bareng... 🌸
+          </h3>
+        </div>
+
+        <div class="options-container flex flex-col gap-2.5" data-q="q2">
+          <button class="option-btn" data-val="A" data-sound="adem">
+            <span class="opt-badge">A</span>
+            <span class="opt-text">Nyambung diajak ngobrol apa aja tanpa jaim 🗣️✨</span>
+          </button>
+          <button class="option-btn" data-val="B" data-sound="cieee">
+            <span class="opt-badge">B</span>
+            <span class="opt-text">Cara kamu dengerin & ngehargai hal-hal kecil 👂🌸</span>
+          </button>
+          <button class="option-btn" data-val="C" data-sound="wkwk">
+            <span class="opt-badge">C</span>
+            <span class="opt-text">Humor receh kita yang cuma kita yang paham 🤣🥨</span>
+          </button>
+          <button class="option-btn" data-val="D" data-sound="adem">
+            <span class="opt-badge">D</span>
+            <span class="opt-text">Vibe tenang yang bikin aman jadi diri sendiri 🤍🏡</span>
+          </button>
+        </div>
+      </section>
+
+
+      <!-- ==================== SCREEN 3: Q3 (ABSURD / RANDOM) ==================== -->
+      <section id="screen-q3" class="quiz-screen hidden flex flex-col gap-3">
+        <div class="bg-white rounded-3xl border-3 border-loveDark shadow-comic p-4">
+          <div class="inline-block bg-loveYellow text-loveDark font-comic text-[11px] font-bold px-2.5 py-0.5 rounded-md border border-loveDark shadow-comic-sm mb-1.5">
+            PERTANYAAN 3 • SKENARIO RANDOM ⚡
+          </div>
+          <h3 class="font-comic text-lg font-bold text-loveDark leading-snug">
+            Tiba-tiba hujan deras pas lagi jalan berdua, respon kita kira-kira... 🌧️☂️
+          </h3>
+        </div>
+
+        <div class="options-container flex flex-col gap-2.5" data-q="q3">
+          <button class="option-btn" data-val="A" data-sound="wkwk">
+            <span class="opt-badge">A</span>
+            <span class="opt-text">Neduh di emperan toko sambil ketawa liat becek 🌧️👟</span>
+          </button>
+          <button class="option-btn" data-val="B" data-sound="cieee">
+            <span class="opt-badge">B</span>
+            <span class="opt-text">Satu payung sempit berdua, bahumu basah sebelah ☂️🫂</span>
+          </button>
+          <button class="option-btn" data-val="C" data-sound="nyam">
+            <span class="opt-badge">C</span>
+            <span class="opt-text">Langsung melipir cari mie kuah panas & teh anget 🍜☕</span>
+          </button>
+          <button class="option-btn" data-val="D" data-sound="boing">
+            <span class="opt-badge">D</span>
+            <span class="opt-text">Pasrah main hujan ala video klip galau 2000-an 💃🌧️</span>
+          </button>
+        </div>
+      </section>
+
+
+      <!-- ==================== SCREEN 4: Q4 (SERIUS / HATI KE HATI) ==================== -->
+      <section id="screen-q4" class="quiz-screen hidden flex flex-col gap-3">
+        <div class="bg-white rounded-3xl border-3 border-loveDark shadow-comic p-4">
+          <div class="inline-block bg-lovePurple text-white font-comic text-[11px] font-bold px-2.5 py-0.5 rounded-md border border-loveDark shadow-comic-sm mb-1.5">
+            PERTANYAAN 4 • [SERIUS] KEBUTUHAN HATI 🤍
+          </div>
+          <h3 class="font-comic text-lg font-bold text-loveDark leading-snug">
+            Pas lagi capek banget dihajar rutinitas, kamu paling butuh... 🛋️✨
+          </h3>
+        </div>
+
+        <div class="options-container flex flex-col gap-2.5" data-q="q4">
+          <button class="option-btn" data-val="A" data-sound="adem">
+            <span class="opt-badge">A</span>
+            <span class="opt-text">Ditemenin tanpa banyak tanya, yang penting ada kamu 🛋️🤍</span>
+          </button>
+          <button class="option-btn" data-val="B" data-sound="cieee">
+            <span class="opt-badge">B</span>
+            <span class="opt-text">Divalidasi, di-puk-puk, & disemangatin pelan-pelan 🧸✨</span>
+          </button>
+          <button class="option-btn" data-val="C" data-sound="gas">
+            <span class="opt-badge">C</span>
+            <span class="opt-text">Diajak kabur keliling kota dengerin musik favorit 🚗🎶</span>
+          </button>
+          <button class="option-btn" data-val="D" data-sound="nyam">
+            <span class="opt-badge">D</span>
+            <span class="opt-text">Asupan kuliner favorit & deep talk sampai tenang 🍕🌙</span>
+          </button>
+        </div>
+      </section>
+
+
+      <!-- ==================== SCREEN 5: Q5 (KODE KERAS / UNGKAPAN) ==================== -->
+      <section id="screen-q5" class="quiz-screen hidden flex flex-col gap-3">
+        <div class="bg-white rounded-3xl border-3 border-loveDark shadow-comic p-4">
+          <div class="inline-block bg-lovePink text-white font-comic text-[11px] font-bold px-2.5 py-0.5 rounded-md border border-loveDark shadow-comic-sm mb-1.5">
+            PERTANYAAN 5 • KODE RAHASIA UNTUK PENGIRIM 💌
+          </div>
+          <h3 class="font-comic text-lg font-bold text-loveDark leading-snug">
+            Pesan rahasia atau kode halus yang mau kamu sampaiin ke aku... 👉👈
+          </h3>
+        </div>
+
+        <div class="options-container flex flex-col gap-2.5" data-q="q5">
+          <button class="option-btn" data-val="A" data-sound="cieee">
+            <span class="opt-badge">A</span>
+            <span class="opt-text">"Weekend ini kosongin jadwal ya, kita jalan berdua!" 🎟️👉👈</span>
+          </button>
+          <button class="option-btn" data-val="B" data-sound="nyam">
+            <span class="opt-badge">B</span>
+            <span class="opt-text">"Kapan-kapan ajak aku kulineran ke tempat favoritmu ya" 🍰🛵</span>
+          </button>
+          <button class="option-btn" data-val="C" data-sound="meow">
+            <span class="opt-badge">C</span>
+            <span class="opt-text">"Teleponan malam ini sampe salah satu ketiduran yuk" 📞🌙</span>
+          </button>
+          <button class="option-btn" data-val="D" data-sound="cieee">
+            <span class="opt-badge">D</span>
+            <span class="opt-text">"Cuma mau bilang: makasih udah bikin hariku lebih cerah!" 💐💖</span>
+          </button>
+        </div>
+      </section>
+
+
+      <!-- ==================== SCREEN 6: RESULT & CERTIFICATE ==================== -->
+      <section id="screen-result" class="quiz-screen hidden flex flex-col gap-3">
+        
+        <!-- Wajib Save & Share Alert Banner -->
+        <div class="bg-loveYellow border-2 border-loveDark shadow-comic p-2.5 rounded-2xl flex items-center gap-2.5">
+          <span class="text-2xl animate-bounce">📢</span>
+          <div class="text-[11px] leading-tight font-bold text-loveDark">
+            <span class="text-lovePinkDark">LANGKAH TERAKHIR!</span><br>
+            Wajib simpan PDF sertifikat ini & kirimkan hasilnya ke WhatsApp si Pengirim ya! 📲✨
+          </div>
+        </div>
+
+        <!-- CERTIFICATE CARD (READY FOR PERFECT HTML2PDF PRINT) -->
+        <div id="certificate-card" class="bg-white rounded-3xl border-3 border-loveDark shadow-comic-lg p-3.5 relative overflow-hidden text-center">
+          
+          <!-- Top Watermark & Seal -->
+          <div class="flex justify-between items-center border-b-2 border-dashed border-lovePink/40 pb-2 mb-2.5">
+            <div class="text-left">
+              <span class="bg-lovePink text-white font-comic text-[9px] font-bold px-2 py-0.5 rounded border border-loveDark">SERTIFIKAT RESMI</span>
+              <p class="font-comic text-xs font-bold text-lovePurple mt-0.5">AUDIT CINTA & PDKT 2026</p>
+            </div>
+            <div class="w-10 h-10 rounded-full bg-loveYellow border-2 border-loveDark flex items-center justify-center text-lg shadow-comic-sm">
+              👑
+            </div>
+          </div>
+
+          <!-- Name & Chemistry Score -->
+          <div class="mb-2">
+            <p class="text-[10px] uppercase tracking-wider text-gray-500 font-bold">Dianugerahkan Kepada:</p>
+            <h3 id="res-name" class="font-comic text-2xl font-bold text-lovePink leading-tight">Nama Kamu</h3>
+            
+            <div class="inline-block bg-loveLight px-3 py-1 rounded-xl border-2 border-loveDark shadow-comic-sm mt-1 mb-1">
+              <span class="text-[11px] font-bold text-loveDark">Tingkat Kecocokan Hati: </span>
+              <span id="res-chemistry" class="font-comic text-sm font-extrabold text-lovePink">99.8% Match</span>
+            </div>
+
+            <p id="res-title" class="text-xs font-comic font-bold text-lovePurple bg-amber-100 py-1 px-2 rounded-lg border border-loveDark inline-block">
+              "Spesialis Salting Brutal Tapi Paling Tulus"
+            </p>
+          </div>
+
+          <!-- Summary Grid 5 Answers -->
+          <div class="bg-loveLight/60 rounded-2xl border-2 border-loveDark p-2.5 text-left mb-2.5 space-y-1.5 text-[11px]">
+            <div class="flex items-start gap-1.5">
+              <span class="text-xs">🔋</span>
+              <div class="leading-tight"><strong class="text-loveDark">Baterai Hati:</strong> <span id="summary-q1" class="text-gray-700 font-medium">Fast charging</span></div>
+            </div>
+            <div class="flex items-start gap-1.5">
+              <span class="text-xs">💖</span>
+              <div class="leading-tight"><strong class="text-loveDark">Kenyamanan:</strong> <span id="summary-q2" class="text-gray-700 font-medium">Nyambung tanpa jaim</span></div>
+            </div>
+            <div class="flex items-start gap-1.5">
+              <span class="text-xs">🌧️</span>
+              <div class="leading-tight"><strong class="text-loveDark">Hujan Badai:</strong> <span id="summary-q3" class="text-gray-700 font-medium">Neduh emperan toko</span></div>
+            </div>
+            <div class="flex items-start gap-1.5">
+              <span class="text-xs">🛋️</span>
+              <div class="leading-tight"><strong class="text-loveDark">Saat Capek:</strong> <span id="summary-q4" class="text-gray-700 font-medium">Ditemenin tanpa banyak tanya</span></div>
+            </div>
+            <div class="flex items-start gap-1.5">
+              <span class="text-xs">💌</span>
+              <div class="leading-tight"><strong class="text-loveDark">Pesan Rahasia:</strong> <span id="summary-q5" class="text-lovePink font-bold">Weekend jalan berdua</span></div>
+            </div>
+          </div>
+
+          <!-- Sweet Recommendation -->
+          <div class="bg-pink-50 rounded-xl border border-lovePink/40 p-2 text-left mb-2">
+            <p class="text-[10px] font-bold text-lovePink uppercase mb-0.5">Catatan Khusus si Pengirim:</p>
+            <p id="res-recommendation" class="text-[11px] leading-relaxed text-gray-800 font-medium italic">
+              "Kamu udah bikin hariku jauh lebih berwarna. Kode diterima dengan jelas, sekarang giliran kita bikin momen berdua!"
+            </p>
+          </div>
+
+          <!-- Footer Verification Badge -->
+          <div class="pt-1 border-t border-gray-200 flex justify-between items-center text-[9px] text-gray-500 font-mono">
+            <span>Status: Terbukti Jujur 100% 👼</span>
+            <span id="stamp-date">2026</span>
+          </div>
+        </div>
+
+        <!-- Action Buttons Grid -->
+        <div class="grid grid-cols-2 gap-2.5">
+          <button id="btn-share-whatsapp" class="py-3 px-3 bg-[#25D366] text-white font-comic text-xs font-bold rounded-2xl border-3 border-loveDark shadow-comic active:translate-y-1 active:shadow-comic-pressed transition-all flex items-center justify-center gap-1.5">
+            <span class="text-base">💬</span>
+            <span>Kirim ke WA</span>
+          </button>
+
+          <button id="btn-download-pdf" class="py-3 px-3 bg-loveYellow text-loveDark font-comic text-xs font-bold rounded-2xl border-3 border-loveDark shadow-comic active:translate-y-1 active:shadow-comic-pressed transition-all flex items-center justify-center gap-1.5">
+            <span class="text-base">📄</span>
+            <span>Simpan PDF</span>
+          </button>
+        </div>
+
+        <!-- Retake Button -->
+        <button id="btn-retake-quiz" class="w-full py-2 bg-white/90 text-loveDark font-comic text-xs font-bold rounded-xl border-2 border-loveDark shadow-comic-sm active:translate-y-0.5 transition-all text-center">
+          🔁 Coba Kuis Sekali Lagi
+        </button>
+      </section>
+
+    </div>
+
+    <!-- FOOTER SIGNATURE -->
+    <footer class="w-full text-center text-[10px] text-white/80 font-bold py-1 shrink-0 drop-shadow">
+      Crafted with 💖 & Humor • Anti-Bohong Verified 👼
+    </footer>
+  </main>
+
+
+  <!-- ==================== SECRET ADMIN MODAL ==================== -->
+  <div id="secret-admin-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden items-center justify-center p-3">
+    <div class="bg-white w-full max-w-[400px] rounded-3xl border-3 border-loveDark shadow-comic-lg p-4 max-h-[90vh] flex flex-col">
+      <!-- Modal Header -->
+      <div class="flex justify-between items-center border-b-2 border-loveDark pb-2 mb-3">
+        <div class="flex items-center gap-2">
+          <span class="text-xl">🕵️‍♂️</span>
+          <h4 class="font-comic text-base font-bold text-lovePink">Kotak Rahasia Jawaban</h4>
+        </div>
+        <button id="btn-close-admin" class="w-7 h-7 rounded-lg bg-gray-200 border-2 border-loveDark font-bold text-xs flex items-center justify-center hover:bg-red-200">
+          ✕
+        </button>
+      </div>
+
+      <p class="text-[11px] text-gray-600 mb-2">
+        Data jawaban dari browser ini & backup otomatis terkirim ke <strong>kthoriq7@gmail.com</strong>.
+      </p>
+
+      <!-- Submissions List -->
+      <div id="admin-submissions-list" class="flex-1 overflow-y-auto space-y-2 pr-1 mb-3 scrollbar-thin max-h-[50vh]">
+        <!-- Rendered via JS -->
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="grid grid-cols-2 gap-2 pt-2 border-t border-gray-200">
+        <button id="btn-export-json" class="py-2 px-2 bg-loveYellow text-loveDark text-xs font-bold rounded-xl border-2 border-loveDark shadow-comic-sm">
+          📋 Salin Data
+        </button>
+        <button id="btn-clear-history" class="py-2 px-2 bg-rose-100 text-red-600 text-xs font-bold rounded-xl border-2 border-loveDark shadow-comic-sm">
+          🗑️ Bersihkan
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
