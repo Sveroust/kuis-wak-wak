@@ -3,8 +3,9 @@
 Web app kuiz interaktif bertema audit karakter, selera me-time, dan vibe check yang santai, lucu, jujur, dan anti-cringe ("gak kayak ngarep"). Didesain khusus dengan palet warna **Velvet Maroon & Warm Rose Gold**, efek suara synthesizer imut (100% Web Audio API), sumpah lucu anti-bohong, ekspor PDF sertifikat resmi anti-potong, integrasi WhatsApp share, dan backup email otomatis ke `kthoriq7@gmail.com`.
 
 ## 🌐 Live URL
-- **GitHub Pages:** [https://sveroust.github.io/kuis-cinta/](https://sveroust.github.io/kuis-cinta/)
-- **Repository:** [https://github.com/Sveroust/kuis-cinta](https://github.com/Sveroust/kuis-cinta)
+- **Primary URL (kuis-wak-wak):** [https://sveroust.github.io/kuis-wak-wak/](https://sveroust.github.io/kuis-wak-wak/)
+- **Alternative URL (kuis-wak-waw):** [https://sveroust.github.io/kuis-wak-waw/](https://sveroust.github.io/kuis-wak-waw/)
+- **Repository:** [https://github.com/Sveroust/kuis-wak-wak](https://github.com/Sveroust/kuis-wak-wak) & [https://github.com/Sveroust/kuis-wak-waw](https://github.com/Sveroust/kuis-wak-waw)
 
 ## 🎯 5 Pertanyaan Kuiz Wak Waw
 1. **⚡ Dilema Survival Absurd:** Mending milih mana? (Loncat dari Tebing Keraton vs Berenang di Kali Ciliwung posisi gak bisa renang).
