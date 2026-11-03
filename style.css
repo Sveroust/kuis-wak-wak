@@ -1,17 +1,18 @@
 /* ==========================================================================
-   KUIS CINTA & SOFT PDKT STYLESHEET
-   Romantic Neo-Brutalist Pop-Art Comic Aesthetic
+   KUIS HATI & RASA (EDISI MAROON LUXURY & SOFT PDKT)
+   Aesthetic Romantic Neo-Brutalist Pop-Art Style
    ========================================================================== */
 
 :root {
-  --love-pink: #FF2A85;
-  --love-pink-dark: #D6005E;
-  --love-rose: #FF6B9D;
-  --love-light: #FFF0F5;
-  --love-yellow: #FFD166;
-  --love-purple: #8338EC;
-  --love-dark: #1E1022;
-  --love-cyan: #06D6A0;
+  --love-maroon: #6B1D2F;
+  --love-maroon-dark: #4A0E17;
+  --love-maroon-light: #9E2A45;
+  --love-rose: #E8A598;
+  --love-blush: #FFF2F4;
+  --love-gold: #F6E05E;
+  --love-dark: #1E0A10;
+  --love-plum: #380D17;
+  --love-cream: #FFF8F8;
 }
 
 /* Base resets & smooth rendering */
@@ -29,12 +30,12 @@ html, body {
   padding-bottom: max(0.75rem, env(safe-area-inset-bottom, 0.75rem));
 }
 
-/* Romantic Radial Polka Dot Pattern */
+/* Romantic Maroon Polka Dot & Star Atmosphere */
 .romantic-bg-pattern {
-  background-color: #2b0938;
+  background-color: #23070E;
   background-image: 
-    radial-gradient(#FF2A85 1.5px, transparent 1.5px),
-    radial-gradient(#FFD166 1.5px, #2b0938 1.5px);
+    radial-gradient(#8A2840 1.5px, transparent 1.5px),
+    radial-gradient(#E8A598 1.5px, #23070E 1.5px);
   background-size: 32px 32px;
   background-position: 0 0, 16px 16px;
 }
@@ -46,7 +47,7 @@ html, body {
   gap: 0.75rem;
   width: 100%;
   min-height: 54px;
-  padding: 0.75rem 0.85rem;
+  padding: 0.8rem 0.9rem;
   background-color: #ffffff;
   color: var(--love-dark);
   border: 3px solid var(--love-dark);
@@ -63,7 +64,7 @@ html, body {
 .option-btn:hover {
   transform: translate(-1px, -1px);
   box-shadow: 5px 5px 0px var(--love-dark);
-  background-color: #fff9fb;
+  background-color: #FFF9FA;
 }
 
 .option-btn:active {
@@ -72,7 +73,7 @@ html, body {
 }
 
 .option-btn.selected {
-  background: linear-gradient(135deg, #FF2A85 0%, #FF6B9D 100%) !important;
+  background: linear-gradient(135deg, #6B1D2F 0%, #9E2A45 100%) !important;
   color: #ffffff !important;
   border-color: var(--love-dark) !important;
   transform: translate(2px, 2px);
@@ -80,7 +81,7 @@ html, body {
 }
 
 .option-btn.selected .opt-badge {
-  background-color: #FFD166 !important;
+  background-color: #F6E05E !important;
   color: var(--love-dark) !important;
   border-color: var(--love-dark) !important;
 }
@@ -89,15 +90,15 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 1.75rem;
-  height: 1.75rem;
+  width: 1.8rem;
+  height: 1.8rem;
   flex-shrink: 0;
-  background-color: var(--loveLight);
-  color: var(--lovePurple);
+  background-color: var(--love-blush);
+  color: var(--love-maroon);
   border: 2px solid var(--love-dark);
   border-radius: 0.65rem;
   font-family: 'Fredoka', sans-serif;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   font-weight: 700;
   box-shadow: 2px 2px 0px var(--love-dark);
 }
@@ -115,11 +116,11 @@ html, body {
   background: transparent;
 }
 .scrollbar-thin::-webkit-scrollbar-thumb {
-  background: rgba(255, 42, 133, 0.4);
+  background: rgba(107, 29, 47, 0.5);
   border-radius: 10px;
 }
 .scrollbar-thin::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 42, 133, 0.8);
+  background: rgba(107, 29, 47, 0.9);
 }
 
 /* Certificate specific print optimization for html2pdf */

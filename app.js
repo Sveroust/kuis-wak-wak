@@ -1,7 +1,7 @@
 /**
  * =========================================================================
- * KUIS CINTA & SOFT PDKT 💘
- * 5 Snappy Questions: Fun + Serious Comfort & Emotion + Absurd Scenarios
+ * KUIS HATI & RASA 🍷✨ (EDISI SPESIAL MALIKA)
+ * 5 Snappy Questions: Fun Frequency + Serious Comfort & Care + Spontaneous Escape
  * Anti-Bohong: Upil Segede Bakso Urat & Kuping Dijewer Malaikat Cinta 👼👂
  * 100% Cute Cartoon Synth FX & Silent Cloud Email Backup to kthoriq7@gmail.com
  * =========================================================================
@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     totalQuestions: 5,
     soundEnabled: true,
     answers: {
-      senderName: '',
+      senderName: 'Malika',
       q1: '',
       q1Text: '',
       q2: '',
@@ -53,8 +53,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const osc = this.ctx.createOscillator();
         const gain = this.ctx.createGain();
         osc.type = 'sine';
-        osc.frequency.setValueAtTime(480, this.ctx.currentTime);
-        osc.frequency.exponentialRampToValueAtTime(1200, this.ctx.currentTime + 0.08);
+        osc.frequency.setValueAtTime(520, this.ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(1350, this.ctx.currentTime + 0.08);
         gain.gain.setValueAtTime(0.3, this.ctx.currentTime);
         gain.gain.exponentialRampToValueAtTime(0.01, this.ctx.currentTime + 0.08);
         osc.connect(gain);
@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
       } catch (e) { console.debug(e); }
     },
 
-    // 2. Cute 8-bit Star / Coin Chime
+    // 2. Cute Star / Coin Chime
     playCoin() {
       if (!state.soundEnabled) return;
       this.init();
@@ -150,7 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
       } catch (e) { console.debug(e); }
     },
 
-    // 6. Cupid Harp Cascade (Super Romantic & Sparkly)
+    // 6. Cupid Harp Cascade
     playHarpSparkle() {
       if (!state.soundEnabled) return;
       this.init();
@@ -278,10 +278,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const vibeTags = [
     '',
-    'PEMANASAN ⚡',
-    '[SERIUS] KENYAMANAN 💖',
-    'MOMEN RANDOM 🌧️',
-    '[SERIUS] HATI KE HATI 🤍',
+    'SENSOR FREKUENSI ⚡',
+    '[SERIUS] KENYAMANAN 🍷',
+    'SKENARIO SPONTAN 🍕',
+    '[SERIUS] TEMPAT BERLINDUNG 🧸',
     'KODE RAHASIA 💌',
     'SELESAI 👑'
   ];
@@ -301,6 +301,11 @@ document.addEventListener('DOMContentLoaded', () => {
     state.answers.senderName = e.target.value.trim();
     validateWelcome();
   });
+
+  // Check initial state (default Malika)
+  if (inputSenderName.value) {
+    state.answers.senderName = inputSenderName.value.trim();
+  }
 
   function goToScreen(targetIndex) {
     const currentScreen = screens[state.currentStep];
@@ -349,11 +354,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const pct = (state.currentStep / state.totalQuestions) * 100;
       progressBar.style.width = `${pct}%`;
       stepNumberText.textContent = `SOAL ${state.currentStep} DARI ${state.totalQuestions}`;
-      vibeTag.textContent = vibeTags[state.currentStep] || 'KUIS CINTA';
+      vibeTag.textContent = vibeTags[state.currentStep] || 'KUIS HATI';
     } else if (state.currentStep === 6) {
       progressBar.style.width = '100%';
       stepTracker.classList.remove('hidden');
-      stepNumberText.textContent = 'SELESAI 💘';
+      stepNumberText.textContent = 'SELESAI 🍷';
       vibeTag.textContent = 'HASIL AUDIT 👑';
     }
   }
@@ -401,10 +406,10 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   const romanticTitles = [
-    "Spesialis Salting Brutal Tapi Paling Tulus 💖",
-    "Partner Hidup Idaman Versi Ultra Premium ✨",
-    "Pemberi Rasa Nyaman Tingkat Dewa 🏡🌸",
-    "Manifestor Bahagia yang Wajib Dijagain Selamanya 🧸💘"
+    "Partner Frekuensi Idaman Versi Ultra Premium ✨",
+    "Spesialis Bikin Adem & Paling Nyaman Diajak Ngobrol 🍷🌸",
+    "Sosok Visioner Lembut yang Wajib Dijagain Selamanya 🧸🤍",
+    "Kombinasi Langka: Cerdas, Elegan, Tapi Bikin Salting Brutal 🙈✨"
   ];
 
   function finishQuiz() {
@@ -417,34 +422,34 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function generateResults() {
-    const name = state.answers.senderName || 'Kamu';
+    const name = state.answers.senderName || 'Malika';
     resName.textContent = name;
 
     const titleIdx = (name.length + (state.answers.q1Text.length || 0)) % romanticTitles.length;
     resTitle.textContent = `"${romanticTitles[titleIdx]}"`;
 
-    const matchScore = (98.5 + (Math.random() * 1.4)).toFixed(1);
-    resChemistry.textContent = `${matchScore}% Match 💘`;
+    const matchScore = (98.6 + (Math.random() * 1.3)).toFixed(1);
+    resChemistry.textContent = `${matchScore}% Match 🍷`;
 
-    summaryQ1.textContent = state.answers.q1Text || 'Fast charging';
-    summaryQ2.textContent = state.answers.q2Text || 'Nyambung tanpa jaim';
-    summaryQ3.textContent = state.answers.q3Text || 'Neduh emperan toko';
-    summaryQ4.textContent = state.answers.q4Text || 'Ditemenin tanpa banyak tanya';
-    summaryQ5.textContent = state.answers.q5Text || 'Weekend jalan berdua';
+    summaryQ1.textContent = state.answers.q1Text || 'Auto senyum tipis';
+    summaryQ2.textContent = state.answers.q2Text || 'Nyambung tanpa di-judge';
+    summaryQ3.textContent = state.answers.q3Text || 'Melipir ke cafe maroon estetik';
+    summaryQ4.textContent = state.answers.q4Text || 'Divalidasi & di-puk-puk';
+    summaryQ5.textContent = state.answers.q5Text || 'Ngopi santai berdua';
 
     if (stampDate) {
       stampDate.textContent = new Date().toLocaleDateString('id-ID', { year: 'numeric', month: 'short', day: 'numeric' });
     }
 
-    let reco = "Kamu udah bikin hariku jauh lebih berwarna. Kode diterima dengan jelas, sekarang giliran kita bikin momen berdua! ☕✨";
+    let reco = "Frekuensi kita klop banget. Kode rahasiamu diterima dengan jelas, sekarang saatnya kita bikin momen berdua! ☕✨";
     if (state.answers.q5 === 'A') {
-      reco = "Sinyal 5G diterima! Pengirim kuis ini resmi diwajibkan booking waktu buat jalan berdua weekend ini bareng kamu! 🎟️👉👈";
+      reco = "Sinyal frekuensi 5G diterima! Pengirim kuis ini resmi diwajibkan booking waktu buat jalan berdua weekend ini bareng kamu! 🎟️👉👈";
     } else if (state.answers.q5 === 'B') {
-      reco = "Radar kuliner berbunyi nyaring! Siap-siap diajak hunting makanan enak dan ditraktir kuliner favoritmu sama si pengirim! 🍰🛵";
+      reco = "Pilihan berkelas! Siap-siap diajak melipir ke spot ngopi paling tenang dan estetik sambil cerita panjang lebar sama si pengirim! ☕✨";
     } else if (state.answers.q5 === 'C') {
       reco = "Izin teleponan malam disahkan secara hukum cinta! Jangan kaget kalau malam ini HP-mu bordering dari si pengirim kuis ya! 📞🌙";
     } else if (state.answers.q5 === 'D') {
-      reco = "Pesan manismu sukses bikin si pengirim kuis senyum-senyum sendiri seharian. Makasih banyak udah hadir dan jadi orang spesial! 💐💖";
+      reco = "Pesan manismu sukses bikin si pengirim kuis senyum-senyum sendiri seharian. Makasih banyak ya Malika, kehadiranmu selalu bikin hariku teduh 💐🤍";
     }
     resRecommendation.textContent = `"${reco}"`;
   }
@@ -453,12 +458,12 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       const submission = {
         timestamp: new Date().toLocaleString('id-ID'),
-        senderName: state.answers.senderName,
-        q1_baterai: state.answers.q1Text,
+        senderName: state.answers.senderName || 'Malika',
+        q1_frekuensi: state.answers.q1Text,
         q2_kenyamanan: state.answers.q2Text,
-        q3_hujan: state.answers.q3Text,
-        q4_kebutuhan: state.answers.q4Text,
-        q5_pesan: state.answers.q5Text
+        q3_spontan: state.answers.q3Text,
+        q4_tempat_berlindung: state.answers.q4Text,
+        q5_kode_rahasia: state.answers.q5Text
       };
 
       const existing = JSON.parse(localStorage.getItem('kuis_cinta_submissions') || '[]');
@@ -475,15 +480,15 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       const a = state.answers;
       const payload = {
-        _subject: `💘 Hasil Kuis Cinta & Soft PDKT dari ${a.senderName || 'Seseorang'}!`,
+        _subject: `🍷 Hasil Kuis Hati & Frekuensi Rasa dari ${a.senderName || 'Malika'}!`,
         _template: "table",
         _captcha: "false",
-        "👤 Nama Panggilan": a.senderName || "-",
-        "1. 🔋 Mode Baterai Hati": a.q1Text || "-",
-        "2. 💖 [SERIUS] Yang Bikin Nyaman": a.q2Text || "-",
-        "3. 🌧️ Skenario Hujan Badai": a.q3Text || "-",
-        "4. 🛋️ [SERIUS] Kebutuhan Saat Capek": a.q4Text || "-",
-        "5. 💌 Kode Rahasia / Ungkapan": a.q5Text || "-",
+        "👤 Nama Panggilan": a.senderName || "Malika",
+        "1. ⚡ Sensor Frekuensi": a.q1Text || "-",
+        "2. 🍷 [SERIUS] Yang Bikin Nyaman": a.q2Text || "-",
+        "3. 🚗 Skenario Spontan": a.q3Text || "-",
+        "4. 🧸 [SERIUS] Tempat Berlindung": a.q4Text || "-",
+        "5. 💌 Kode Rahasia / Harapan": a.q5Text || "-",
         "👼 Status Kejujuran": "Terbukti Jujur 100% (Aman dari upil bakso & jeweran malaikat)",
         "⏰ Waktu Pengisian": new Date().toLocaleString('id-ID')
       };
@@ -498,7 +503,7 @@ document.addEventListener('DOMContentLoaded', () => {
       })
       .then(res => res.json())
       .then(data => {
-        console.log('✅ Kuis cinta terkirim ke kthoriq7@gmail.com:', data);
+        console.log('✅ Kuis hati terkirim ke kthoriq7@gmail.com:', data);
       })
       .catch(err => {
         console.debug('Silent email note:', err);
@@ -516,17 +521,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     adminSubmissionsList.innerHTML = list.map((item, idx) => `
-      <div class="p-3 bg-pink-50/70 rounded-2xl border-2 border-loveDark shadow-comic-sm space-y-1.5">
+      <div class="p-3 bg-red-50/70 rounded-2xl border-2 border-loveDark shadow-comic-sm space-y-1.5">
         <div class="flex justify-between items-center border-b border-loveDark/20 pb-1">
-          <span class="font-comic text-sm text-lovePink font-bold">#${idx + 1} ${item.senderName}</span>
+          <span class="font-comic text-sm text-loveMaroon font-bold">#${idx + 1} ${item.senderName}</span>
           <span class="text-[9px] text-gray-500 font-mono">${item.timestamp}</span>
         </div>
         <div class="text-[11px] space-y-0.5 text-gray-800">
-          <div><strong class="text-loveDark">🔋 Baterai:</strong> ${item.q1_baterai || '-'}</div>
-          <div><strong class="text-loveDark">💖 Kenyamanan:</strong> ${item.q2_kenyamanan || '-'}</div>
-          <div><strong class="text-loveDark">🌧️ Hujan:</strong> ${item.q3_hujan || '-'}</div>
-          <div><strong class="text-loveDark">🛋️ Kebutuhan:</strong> ${item.q4_kebutuhan || '-'}</div>
-          <div><strong class="text-loveDark">💌 Pesan:</strong> <span class="text-lovePink font-bold">${item.q5_pesan || '-'}</span></div>
+          <div><strong class="text-loveDark">⚡ Frekuensi:</strong> ${item.q1_frekuensi || '-'}</div>
+          <div><strong class="text-loveDark">🍷 Kenyamanan:</strong> ${item.q2_kenyamanan || '-'}</div>
+          <div><strong class="text-loveDark">🚗 Spontan:</strong> ${item.q3_spontan || '-'}</div>
+          <div><strong class="text-loveDark">🧸 Tempat Berlindung:</strong> ${item.q4_tempat_berlindung || '-'}</div>
+          <div><strong class="text-loveDark">💌 Kode:</strong> <span class="text-loveMaroon font-bold">${item.q5_kode_rahasia || '-'}</span></div>
         </div>
       </div>
     `).join('');
@@ -549,7 +554,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   btnClearHistory.addEventListener('click', () => {
-    if (confirm('Yakin mau hapus semua riwayat jawaban kuis cinta tersimpan?')) {
+    if (confirm('Yakin mau hapus semua riwayat jawaban kuis hati tersimpan?')) {
       localStorage.removeItem('kuis_cinta_submissions');
       renderAdminSubmissions();
     }
@@ -573,10 +578,10 @@ document.addEventListener('DOMContentLoaded', () => {
   function triggerConfetti() {
     if (typeof confetti === 'function') {
       confetti({
-        particleCount: 90,
-        spread: 80,
+        particleCount: 95,
+        spread: 85,
         origin: { y: 0.6 },
-        colors: ['#FF2A85', '#FFD166', '#8338EC', '#FF6B9D', '#06D6A0']
+        colors: ['#6B1D2F', '#9E2A45', '#E8A598', '#F6E05E', '#FFFFFF']
       });
     }
   }
@@ -585,24 +590,24 @@ document.addEventListener('DOMContentLoaded', () => {
   btnShareWhatsapp.addEventListener('click', () => {
     AudioEngine.playBubblePop();
     const a = state.answers;
-    const pName = a.senderName || 'Aku';
+    const pName = a.senderName || 'Malika';
 
-    const text = `💘 *HASIL KUIS CINTA & SOFT PDKT* 💘
-Halo! Ini hasil kuis cintaku (bebas upil bakso urat & aman dari jeweran malaikat cinta 👼👂):
+    const text = `🍷 *HASIL KUIS HATI & FREKUENSI RASA* 🍷
+Halo! Ini hasil kuis hatiku (terbukti jujur 100%, bebas upil bakso & aman dari jeweran malaikat cinta 👼👂):
 
 👤 *Nama:* ${pName}
-📜 *Status:* Terbukti Jujur 100% ✋
-💖 *Kecocokan Hati:* ${resChemistry.textContent || '99.8% Match'}
-👑 *Predikat:* ${resTitle.textContent || '"Spesialis Salting Brutal"'}
+📜 *Status:* Terverifikasi Jujur 100% ✋
+💖 *Tingkat Kecocokan:* ${resChemistry.textContent || '99.8% Match'}
+👑 *Predikat:* ${resTitle.textContent || '"Partner Frekuensi Idaman"'}
 
-📋 *Audit Rasa:*
-1. 🔋 *Baterai Hati:* ${a.q1Text || 'Fast charging 100%'}
-2. 💖 *Yang Bikin Nyaman:* ${a.q2Text || 'Nyambung tanpa jaim'}
-3. 🌧️ *Pas Hujan Badai:* ${a.q3Text || 'Neduh di emperan toko'}
-4. 🛋️ *Yang Dibutuhin:* ${a.q4Text || 'Ditemenin tanpa banyak tanya'}
-5. 💌 *Pesan Rahasia:* ${a.q5Text || 'Weekend ini jalan berdua yuk!'}
+📋 *Audit Frekuensi & Rasa:*
+1. ⚡ *Sensor Frekuensi:* ${a.q1Text || 'Auto senyum tipis'}
+2. 🍷 *Yang Bikin Nyaman:* ${a.q2Text || 'Nyambung tanpa di-judge'}
+3. 🚗 *Momen Spontan:* ${a.q3Text || 'Melipir ke hidden gem cafe estetik'}
+4. 🧸 *Saat Paling Lelah:* ${a.q4Text || 'Divalidasi & di-puk-puk'}
+5. 💌 *Kode Rahasia:* ${a.q5Text || 'Ngopi santai berdua'}
 
-📌 *Catatan:* ${resRecommendation.textContent || 'Kode diterima!'} 🧸🌸✨`;
+📌 *Catatan Khusus:* ${resRecommendation.textContent || 'Kode diterima!'} 🧸🌸✨`;
 
     const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
     window.open(waUrl, '_blank');
@@ -612,11 +617,11 @@ Halo! Ini hasil kuis cintaku (bebas upil bakso urat & aman dari jeweran malaikat
   btnDownloadPdf.addEventListener('click', () => {
     AudioEngine.playBubblePop();
     const element = document.getElementById('certificate-card');
-    const nameSlug = (state.answers.senderName || 'Kamu').replace(/\s+/g, '-');
+    const nameSlug = (state.answers.senderName || 'Malika').replace(/\s+/g, '-');
 
     const opt = {
       margin: [6, 6, 6, 6],
-      filename: `Sertifikat-Kuis-Cinta-${nameSlug}.pdf`,
+      filename: `Sertifikat-Kuis-Hati-${nameSlug}.pdf`,
       image: { type: 'jpeg', quality: 0.98 },
       html2canvas: { 
         scale: 2.2, 
@@ -629,10 +634,26 @@ Halo! Ini hasil kuis cintaku (bebas upil bakso urat & aman dari jeweran malaikat
       jsPDF: { unit: 'mm', format: 'a5', orientation: 'portrait' }
     };
 
-    if (typeof html2pdf === 'function') {
-      html2pdf().set(opt).from(element).save();
-    } else {
-      window.print();
+    html2pdf().set(opt).from(element).save();
+  });
+
+  btnRetakeQuiz.addEventListener('click', () => {
+    AudioEngine.playBubblePop();
+    state.answers = {
+      senderName: inputSenderName.value.trim() || 'Malika',
+      q1: '', q1Text: '',
+      q2: '', q2Text: '',
+      q3: '', q3Text: '',
+      q4: '', q4Text: '',
+      q5: '', q5Text: ''
+    };
+    document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+    goToScreen(0);
+  });
+
+  resetQuizBtn.addEventListener('click', () => {
+    if (confirm('Ulangi kuis dari awal?')) {
+      btnRetakeQuiz.click();
     }
   });
 
@@ -641,17 +662,4 @@ Halo! Ini hasil kuis cintaku (bebas upil bakso urat & aman dari jeweran malaikat
     soundIcon.textContent = state.soundEnabled ? '🔊' : '🔇';
     if (state.soundEnabled) AudioEngine.playBubblePop();
   });
-
-  function resetQuiz() {
-    AudioEngine.playBubblePop();
-    state.currentStep = 0;
-    vowCheckbox.checked = false;
-    inputSenderName.value = '';
-    validateWelcome();
-    document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
-    goToScreen(0);
-  }
-
-  resetQuizBtn.addEventListener('click', resetQuiz);
-  btnRetakeQuiz.addEventListener('click', resetQuiz);
 });
