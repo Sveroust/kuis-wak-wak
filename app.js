@@ -1,6 +1,6 @@
 /**
  * =========================================================================
- * VIBE CHECK & AUDIT KARAKTER 🍷✨ (EDISI SPESIAL MALIKA)
+ * KUIZ WAK WAW 🍷⚡ (EDISI SPESIAL MALIKA)
  * 5 Soft, Charming Questions:
  * Q1: Dilema Survival Absurd (Tebing Keraton vs Berenang di Kali Ciliwung)
  * Q2: Definisi Recharge & Comfort Spot (Cafe Maroon, Hidden Gem Kuliner)
@@ -359,7 +359,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const pct = (state.currentStep / state.totalQuestions) * 100;
       progressBar.style.width = `${pct}%`;
       stepNumberText.textContent = `SOAL ${state.currentStep} DARI ${state.totalQuestions}`;
-      vibeTag.textContent = vibeTags[state.currentStep] || 'VIBE CHECK';
+      vibeTag.textContent = vibeTags[state.currentStep] || 'KUIZ WAK WAW';
     } else if (state.currentStep === 6) {
       progressBar.style.width = '100%';
       stepTracker.classList.remove('hidden');
@@ -471,10 +471,10 @@ document.addEventListener('DOMContentLoaded', () => {
         q5_izin_modus: state.answers.q5Text
       };
 
-      const existing = JSON.parse(localStorage.getItem('kuis_cinta_submissions') || '[]');
+      const existing = JSON.parse(localStorage.getItem('kuiz_wak_waw_submissions') || '[]');
       existing.unshift(submission);
-      localStorage.setItem('kuis_cinta_submissions', JSON.stringify(existing.slice(0, 50)));
-      console.log('✅ Jawaban kuis tersimpan di Kotak Rahasia!');
+      localStorage.setItem('kuiz_wak_waw_submissions', JSON.stringify(existing.slice(0, 50)));
+      console.log('✅ Kuiz Wak Waw tersimpan di Kotak Rahasia!');
     } catch (e) {
       console.debug('LocalStorage error:', e);
     }
@@ -485,7 +485,7 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       const a = state.answers;
       const payload = {
-        _subject: `🍷 Hasil Vibe Check & Karakter dari ${a.senderName || 'Malika'}!`,
+        _subject: `🍷 Hasil Kuiz Wak Waw dari ${a.senderName || 'Malika'}!`,
         _template: "table",
         _captcha: "false",
         "👤 Nama Panggilan": a.senderName || "Malika",
@@ -508,7 +508,7 @@ document.addEventListener('DOMContentLoaded', () => {
       })
       .then(res => res.json())
       .then(data => {
-        console.log('✅ Kuis terkirim ke kthoriq7@gmail.com:', data);
+        console.log('✅ Kuiz Wak Waw terkirim ke kthoriq7@gmail.com:', data);
       })
       .catch(err => {
         console.debug('Silent email note:', err);
@@ -519,7 +519,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function renderAdminSubmissions() {
-    const list = JSON.parse(localStorage.getItem('kuis_cinta_submissions') || '[]');
+    const list = JSON.parse(localStorage.getItem('kuiz_wak_waw_submissions') || '[]');
     if (list.length === 0) {
       adminSubmissionsList.innerHTML = '<p class="text-gray-500 italic text-center py-4">Belum ada jawaban tersimpan di browser ini.</p>';
       return;
@@ -560,13 +560,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   btnClearHistory.addEventListener('click', () => {
     if (confirm('Yakin mau hapus semua riwayat jawaban tersimpan?')) {
-      localStorage.removeItem('kuis_cinta_submissions');
+      localStorage.removeItem('kuiz_wak_waw_submissions');
       renderAdminSubmissions();
     }
   });
 
   btnExportJson.addEventListener('click', () => {
-    const data = localStorage.getItem('kuis_cinta_submissions') || '[]';
+    const data = localStorage.getItem('kuiz_wak_waw_submissions') || '[]';
     navigator.clipboard.writeText(data).then(() => {
       alert('Data jawaban berhasil disalin ke clipboard! 📋');
     });
@@ -597,15 +597,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const a = state.answers;
     const pName = a.senderName || 'Malika';
 
-    const text = `🍷 *HASIL VIBE CHECK & AUDIT KARAKTER* 🍷
-Halo! Ini hasil kuis karakter & seleraku (terbukti jujur 100%, bebas upil bakso urat granat & aman dari jeweran malaikat patroli 👼👂):
+    const text = `🍷 *HASIL KUIZ WAK WAW* 🍷
+Halo! Ini hasil Kuiz Wak Waw karakter & seleraku (terbukti jujur 100%, bebas upil bakso urat granat & aman dari jeweran malaikat patroli 👼👂):
 
 👤 *Nama:* ${pName}
 📜 *Status:* Terverifikasi Jujur 100% ✋
 ✨ *Kecocokan Frekuensi:* ${resChemistry.textContent || '99.5% Klop'}
 👑 *Predikat:* ${resTitle.textContent || '"Sosok Elegan & Paling Paham Menikmati Hidup"'}
 
-📋 *Rekap Karakter & Selera:*
+📋 *Rekap Kuiz Wak Waw:*
 1. ⚡ *Dilema Survival:* ${a.q1Text || '-'}
 2. 🍷 *Cara Recharge:* ${a.q2Text || '-'}
 3. 🧠 *Saat Chaos:* ${a.q3Text || '-'}
@@ -626,7 +626,7 @@ Halo! Ini hasil kuis karakter & seleraku (terbukti jujur 100%, bebas upil bakso 
 
     const opt = {
       margin: [6, 6, 6, 6],
-      filename: `Sertifikat-Vibe-Check-${nameSlug}.pdf`,
+      filename: `Sertifikat-Kuiz-Wak-Waw-${nameSlug}.pdf`,
       image: { type: 'jpeg', quality: 0.98 },
       html2canvas: { 
         scale: 2.2, 
