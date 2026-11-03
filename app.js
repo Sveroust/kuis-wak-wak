@@ -1,6 +1,6 @@
 /**
  * =========================================================================
- * KUIZ WAK WAW 🍷⚡ (EDISI SPESIAL MALIKA)
+ * KUIZ WAK WAW ⚡ (AUDIT KARAKTER & VIBE CHECK)
  * 5 Soft, Charming Questions:
  * Q1: Dilema Survival Absurd (Tebing Keraton vs Berenang di Kali Ciliwung)
  * Q2: Definisi Recharge & Comfort Spot (Cafe Maroon, Hidden Gem Kuliner)
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     totalQuestions: 5,
     soundEnabled: true,
     answers: {
-      senderName: 'Malika',
+      senderName: '',
       q1: '',
       q1Text: '',
       q2: '',
@@ -284,7 +284,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const vibeTags = [
     '',
     'DILEMA SURVIVAL ⚡',
-    'DEFINISI RECHARGE 🍷',
+    'DEFINISI RECHARGE 🌿',
     'MANAJEMEN CHAOS 🧠',
     'GREEN FLAG UTAMA 🌿',
     'MODUS OPERANDI 🕵️‍♂️',
@@ -307,7 +307,6 @@ document.addEventListener('DOMContentLoaded', () => {
     validateWelcome();
   });
 
-  // Default Malika
   if (inputSenderName.value) {
     state.answers.senderName = inputSenderName.value.trim();
   }
@@ -363,7 +362,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } else if (state.currentStep === 6) {
       progressBar.style.width = '100%';
       stepTracker.classList.remove('hidden');
-      stepNumberText.textContent = 'SELESAI 🍷';
+      stepNumberText.textContent = 'SELESAI ⚡';
       vibeTag.textContent = 'HASIL AUDIT 👑';
     }
   }
@@ -411,7 +410,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   const personalityTitles = [
-    "Sosok Elegan, Visioner, & Paling Paham Cara Menikmati Hidup 🍷✨",
+    "Sosok Elegan, Visioner, & Paling Paham Cara Menikmati Hidup ✨",
     "Spesialis Seleksi Alam: Luarnya Anggun, Aslinya Seru Banget 🌸",
     "Calon Partner Diskusi & Kuliner Paling Ideal Abad Ini 🍰☕",
     "Energi Positif Berkelas yang Bikin Suasana Auto Adem 🌿✨"
@@ -427,7 +426,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function generateResults() {
-    const name = state.answers.senderName || 'Malika';
+    const name = state.answers.senderName || 'Kamu';
     resName.textContent = name;
 
     const titleIdx = (name.length + (state.answers.q1Text.length || 0)) % personalityTitles.length;
@@ -463,7 +462,7 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       const submission = {
         timestamp: new Date().toLocaleString('id-ID'),
-        senderName: state.answers.senderName || 'Malika',
+        senderName: state.answers.senderName || 'Anonim',
         q1_dilema_survival: state.answers.q1Text,
         q2_cara_recharge: state.answers.q2Text,
         q3_manajemen_chaos: state.answers.q3Text,
@@ -485,12 +484,12 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       const a = state.answers;
       const payload = {
-        _subject: `🍷 Hasil Kuiz Wak Waw dari ${a.senderName || 'Malika'}!`,
+        _subject: `⚡ Hasil Kuiz Wak Waw dari ${a.senderName || 'Seseorang'}!`,
         _template: "table",
         _captcha: "false",
-        "👤 Nama Panggilan": a.senderName || "Malika",
+        "👤 Nama Panggilan": a.senderName || "Anonim",
         "1. ⚡ Dilema Survival": a.q1Text || "-",
-        "2. 🍷 Definisi Recharge": a.q2Text || "-",
+        "2. 🌿 Definisi Recharge": a.q2Text || "-",
         "3. 🧠 Respon Saat Chaos": a.q3Text || "-",
         "4. 🌿 Green Flag Utama": a.q4Text || "-",
         "5. 🕵️‍♂️ Izin Modus Pengirim": a.q5Text || "-",
@@ -533,7 +532,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
         <div class="text-[11px] space-y-0.5 text-gray-800">
           <div><strong class="text-loveDark">⚡ Survival:</strong> ${item.q1_dilema_survival || '-'}</div>
-          <div><strong class="text-loveDark">🍷 Recharge:</strong> ${item.q2_cara_recharge || '-'}</div>
+          <div><strong class="text-loveDark">🌿 Recharge:</strong> ${item.q2_cara_recharge || '-'}</div>
           <div><strong class="text-loveDark">🧠 Saat Chaos:</strong> ${item.q3_manajemen_chaos || '-'}</div>
           <div><strong class="text-loveDark">🌿 Green Flag:</strong> ${item.q4_green_flag || '-'}</div>
           <div><strong class="text-loveDark">🕵️‍♂️ Izin Modus:</strong> <span class="text-loveMaroon font-bold">${item.q5_izin_modus || '-'}</span></div>
@@ -595,9 +594,9 @@ document.addEventListener('DOMContentLoaded', () => {
   btnShareWhatsapp.addEventListener('click', () => {
     AudioEngine.playBubblePop();
     const a = state.answers;
-    const pName = a.senderName || 'Malika';
+    const pName = a.senderName || 'Kamu';
 
-    const text = `🍷 *HASIL KUIZ WAK WAW* 🍷
+    const text = `⚡ *HASIL KUIZ WAK WAW* ⚡
 Halo! Ini hasil Kuiz Wak Waw karakter & seleraku (terbukti jujur 100%, bebas upil bakso urat granat & aman dari jeweran malaikat patroli 👼👂):
 
 👤 *Nama:* ${pName}
@@ -607,7 +606,7 @@ Halo! Ini hasil Kuiz Wak Waw karakter & seleraku (terbukti jujur 100%, bebas upi
 
 📋 *Rekap Kuiz Wak Waw:*
 1. ⚡ *Dilema Survival:* ${a.q1Text || '-'}
-2. 🍷 *Cara Recharge:* ${a.q2Text || '-'}
+2. 🌿 *Cara Recharge:* ${a.q2Text || '-'}
 3. 🧠 *Saat Chaos:* ${a.q3Text || '-'}
 4. 🌿 *Green Flag Utama:* ${a.q4Text || '-'}
 5. 🕵️‍♂️ *Izin Modus:* ${a.q5Text || '-'}
@@ -622,7 +621,7 @@ Halo! Ini hasil Kuiz Wak Waw karakter & seleraku (terbukti jujur 100%, bebas upi
   btnDownloadPdf.addEventListener('click', () => {
     AudioEngine.playBubblePop();
     const element = document.getElementById('certificate-card');
-    const nameSlug = (state.answers.senderName || 'Malika').replace(/\s+/g, '-');
+    const nameSlug = (state.answers.senderName || 'Peserta').replace(/\s+/g, '-');
 
     const opt = {
       margin: [6, 6, 6, 6],
@@ -645,7 +644,7 @@ Halo! Ini hasil Kuiz Wak Waw karakter & seleraku (terbukti jujur 100%, bebas upi
   btnRetakeQuiz.addEventListener('click', () => {
     AudioEngine.playBubblePop();
     state.answers = {
-      senderName: inputSenderName.value.trim() || 'Malika',
+      senderName: inputSenderName.value.trim() || '',
       q1: '', q1Text: '',
       q2: '', q2Text: '',
       q3: '', q3Text: '',
